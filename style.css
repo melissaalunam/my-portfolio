@@ -1,0 +1,261 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #fdf6f0;
+  --text: #3a2e2e;
+  --muted: #8c7b75;
+  --accent: #d98cb3;
+  --hero-bg: #fce4ec;
+  --projects-bg: #e8f4f0;
+  --about-bg: #fffbe6;
+  --contact-bg: #ede7f6;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Georgia", serif;
+  line-height: 1.6;
+}
+
+/* ── Hero ── */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  padding: 4rem clamp(2rem, 8vw, 10rem);
+  background-color: var(--hero-bg);
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 480px;
+}
+
+.hero-name {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: #b05a8a;
+}
+
+.hero-discipline {
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.hero-tagline {
+  font-size: 1.125rem;
+  color: var(--muted);
+  max-width: 40ch;
+  font-style: italic;
+}
+
+/* ── Portrait & floral frame ── */
+
+.hero-photo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-frame {
+  position: relative;
+  width: 280px;
+  height: 280px;
+}
+
+.photo-frame img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+
+/* 8 petals behind the photo via box-shadow on a hidden circle */
+.photo-frame::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  box-shadow:
+    0   -115px 0 40px #f7c5d5,
+    0    115px 0 40px #b5ddd8,
+    -115px  0  0 40px #d5c5e8,
+    115px   0  0 40px #fde8b0,
+    -81px -81px 0 40px #c8e6c9,
+    81px  -81px 0 40px #f9cfc9,
+    -81px  81px 0 40px #b3d4f0,
+    81px   81px 0 40px #f5d5a8;
+  filter: blur(4px);
+  opacity: 0.85;
+}
+
+/* soft glow ring between petals and photo */
+.photo-frame::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background: radial-gradient(circle, #fce4ec 60%, transparent 80%);
+  opacity: 0.6;
+}
+
+/* ── Mobile hero ── */
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+    gap: 2.5rem;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .photo-frame,
+  .photo-frame img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* ── Projects ── */
+
+.projects {
+  padding: 6rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--projects-bg);
+  max-width: 100%;
+  padding-left: clamp(2rem, 6vw, 8rem);
+  padding-right: clamp(2rem, 6vw, 8rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.grid-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+figcaption {
+  font-size: 0.875rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  min-height: 1.2em;
+  text-align: center;
+}
+
+/* ── About ── */
+
+.about {
+  padding: 6rem 2rem;
+  margin: 0 auto;
+  background-color: var(--about-bg);
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.about p {
+  font-size: 1.125rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 600px;
+  min-height: 4em;
+}
+
+/* ── Contact ── */
+
+.contact {
+  padding: 4rem 2rem 6rem;
+  text-align: center;
+  background-color: var(--contact-bg);
+}
+
+.contact a {
+  color: #7e57c2;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border-bottom: 1px solid #7e57c2;
+  padding-bottom: 2px;
+}
+
+.contact a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects,
+  .about,
+  .contact {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
