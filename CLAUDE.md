@@ -2,6 +2,12 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Start here
+
+At the beginning of every session, read these two files before doing anything else:
+- `progress.md` — what has been built and how
+- `next_steps.md` — what is planned for upcoming sessions
+
 ## Project Overview
 
 Single-page portfolio website for a nature and wildlife photographer.
