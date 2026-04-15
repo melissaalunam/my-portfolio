@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=Krita/PythonPlugin
+X-KDE-Library=krita_mcp_server
+X-Krita-Manual=
+Name=Krita MCP Server
+Comment=Local TCP socket bridge for Claude MCP tool calls

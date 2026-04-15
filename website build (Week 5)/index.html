@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melissa Luna</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-text">
+      <h1 class="hero-name">Melissa Luna</h1>
+      <p class="hero-discipline">Photographer</p>
+      <p class="hero-tagline">Soft light, quiet moments.</p>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <img src="melissa.jpg" alt="Melissa Luna">
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="projects">
+      <div class="grid">
+        <figure class="grid-item">
+          <img src="photos/IMG_8492.jpg" alt="Petal Drift">
+          <figcaption>Petal Drift</figcaption>
+        </figure>
+        <figure class="grid-item">
+          <img src="photos/IMG_8497.jpg" alt="First Bloom">
+          <figcaption>First Bloom</figcaption>
+        </figure>
+        <figure class="grid-item">
+          <img src="photos/IMG_8536.jpg" alt="Pink Reverie">
+          <figcaption>Pink Reverie</figcaption>
+        </figure>
+        <figure class="grid-item">
+          <img src="photos/IMG_8618.jpg" alt="Before the Wind">
+          <figcaption>Before the Wind</figcaption>
+        </figure>
+        <figure class="grid-item">
+          <img src="photos/IMG_8749.jpg" alt="Fleeting">
+          <figcaption>Fleeting</figcaption>
+        </figure>
+        <figure class="grid-item">
+          <img src="photos/IMG_8754.jpg" alt="Soft Arrival">
+          <figcaption>Soft Arrival</figcaption>
+        </figure>
+        <figure class="grid-item">
+          <img src="photos/IMG_8757.jpg" alt="A Brief Season">
+          <figcaption>A Brief Season</figcaption>
+        </figure>
+        <figure class="grid-item">
+          <img src="photos/IMG_8924.jpg" alt="Blossom Veil">
+          <figcaption>Blossom Veil</figcaption>
+        </figure>
+        <figure class="grid-item">
+          <img src="photos/IMG_8978.jpg" alt="After the Rain">
+          <figcaption>After the Rain</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="about">
+      <p>Flowers have always been my reminder to slow down. They bloom without waiting for you to be ready, and they're gone before you think to look twice.</p>
+    </section>
+
+    <section class="contact">
+      <a href="mailto:melissa_luna00@yonsei.ac.kr">melissa_luna00@yonsei.ac.kr</a>
+    </section>
+
+  </main>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">&#10005;</button>
+    <button class="lightbox-prev" id="lightbox-prev">&#8592;</button>
+    <div class="lightbox-frame">
+      <img class="lightbox-img" id="lightbox-img" src="" alt="">
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+      <p class="lightbox-credit">&#x1F4F7; Melissa Luna</p>
+    </div>
+    <button class="lightbox-next" id="lightbox-next">&#8594;</button>
+  </div>
+
+  <script>
+    const images = Array.from(document.querySelectorAll('.grid-item img'));
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    let current = 0;
+
+    function show(index) {
+      lightboxImg.src = images[index].src;
+      lightboxImg.alt = images[index].alt;
+      lightboxCaption.textContent = images[index].alt;
+    }
+
+    function open(index) {
+      current = index;
+      show(current);
+      lightbox.classList.add('open');
+    }
+
+    function close() {
+      lightbox.classList.remove('open');
+    }
+
+    function prev() {
+      current = (current - 1 + images.length) % images.length;
+      show(current);
+    }
+
+    function next() {
+      current = (current + 1) % images.length;
+      show(current);
+    }
+
+    images.forEach((img, i) => img.addEventListener('click', () => open(i)));
+    document.getElementById('lightbox-close').addEventListener('click', close);
+    document.getElementById('lightbox-prev').addEventListener('click', prev);
+    document.getElementById('lightbox-next').addEventListener('click', next);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    });
+  </script>
+
+</body>
+</html>
